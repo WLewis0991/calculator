@@ -6,6 +6,7 @@ let num1="";
 let num2="";
 let operator="";
 let result="";
+let justEvaluated = false;
 const display= document.getElementsByClassName("calculator-screen");
 const digits= document.getElementsByClassName("number");
 const operators= document.getElementsByClassName("operator");
@@ -65,6 +66,13 @@ decimal.addEventListener("click", function() {
 //Event Listeners for digits
 for (let i = 0; i < digits.length; i++) {
     digits[i].addEventListener("click", function() {
+        if (justEvaluated) {
+            num1 = "";
+            num2 = "";
+            operator = "";
+            result = "";
+            justEvaluated = false;
+        }
         if (operator === "") {
             num1 += digits[i].innerText;
             display[0].value = num1;
@@ -104,6 +112,8 @@ equal.addEventListener("click", function() {
     num1 = result.toString();
     num2 = "";
     operator = "";
+    
+    justEvaluated = true;
 }); 
 
 
